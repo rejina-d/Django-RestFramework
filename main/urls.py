@@ -19,9 +19,13 @@ from django.urls import include, path
 from users.router import router as users_router
 from django.conf import settings
 from django.conf.urls.static import static
+from projects.router import router as projects_router
+
 
 api_urlpatterns = [
     path('users/', include(users_router.urls)),
+    path('projects/', include(projects_router.urls)),
+    
 ]
 
 urlpatterns = [

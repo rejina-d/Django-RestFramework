@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 def generateImagePath( instance, file):
-    return f'images/{instance.id}/{file}'
+    return f'images/users/{instance.username}/{file}'
 
 # Create your models here.
 class Profile(models.Model):
@@ -14,5 +14,7 @@ class Profile(models.Model):
     role = models.CharField(max_length=10, choices=RoleOptions.choices, default=RoleOptions.Worker)
     address = models.CharField(blank= True, null= True, max_length=50)
     dob = models.DateField(blank=True, null=True)
-    profile_image = models.ImageField(blank= True, null=True, upload_to='images/default_user.jpg')
+    profile_image = models.ImageField(blank= True, null=True, upload_to='images/users/default_user.jpg')
     
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
