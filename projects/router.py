@@ -1,6 +1,8 @@
 from rest_framework import routers
-from .viewsets import ProjectViewSet
+from .viewsets import ProjectViewSets
 
-app_name= "users"
+app_name = 'projects'
+
 router = routers.DefaultRouter()
-router.register('projects', ProjectViewSet)
+
+router.register( 'project', ProjectViewSets)
