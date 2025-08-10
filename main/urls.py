@@ -24,21 +24,18 @@ from projects.router import router as project_router
 from tasks.router import router as task_router
 
 auth_api_urls = []
-
 if settings.DEBUG:
-    auth_api_urls.append(path('verify/', include('rest_framework.urls')))
+    auth_api_urls.append(path(r"verify/", include("rest_framework.urls")))
 
 api_urlpatterns = [
-    # path('auth/token/', TokenObtainPairView.as_view()),
-    # path('auth/token/check/', TokenRefreshView.as_view()),
     path("users/", include(user_router.urls)),
     path("projects/", include(project_router.urls)),
     path("tasks/", include(task_router.urls)),
-    
 ]
 urlpatterns = [
     path("api/", include(api_urlpatterns)),
     path("admin/", admin.site.urls),
-]+ auth_api_urls 
+] + auth_api_urls
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
